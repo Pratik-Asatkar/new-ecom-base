@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+
+<body class="" style="background-color: bisque;">
+  <header class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <a href="/"><h1 class="text-3xl font-bold"></h1></a>
+      <nav>
+        <ul class="flex space-x-4">
+          <li>
+            <a href="#" class="text-gray-700 hover:text-gray-900">Home</a>
+          </li>
+          <li>
+            <a href="{{ url_for('cart.view_cart') }}" class="text-gray-700 hover:text-gray-900">Cart</a>
+          </li>
+          <li>
+            <a href="{{ url_for('profile') }}" class="text-gray-700 hover:text-gray-900">Profile</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class=" text-white py-12" style="background-color: black;">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl font-bold mb-4">Welcome to Dairy Delights!</h2>
+        <p class="text-xl mb-8">
+          We offer a wide range of fresh and delicious dairy products.
+        </p>
+        <a href="{{ url_for('cart.view_cart') }}"><button type="button"
+            class="bg-white text-blue-500 py-2 px-4 rounded-md hover:bg-blue-100">
+            View Cart
+          </button></a>
+      </div>
+    </section>
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h2 class="text-3xl font-bold mb-8 text-center">Categories</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+        <div class="bg-white p-4 rounded-lg shadow-md text-center">
+          <a href="{{ url_for('category.category_home', categoryid='milk-product') }}"><img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Fashion/Event/Gateway/MayART/Event/QC/PC-QC/PFF-186-116-1._SY116_CB589544318_.jpg" alt="Category 1" class="w-full rounded-lg mb-4" /></a>
+          <a href="{{ url_for('category.category_home', categoryid='milk-product') }}"><h3 class="text-lg font-medium mb-2">Milk Product</h3></a>
+          <p class="text-gray-700">Buy all the milk made products here.</p>
+          <a href="{{ url_for('category.category_home', categoryid='milk-product') }}"><button type="button"
+              class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 mt-4">View Products</button></a>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow-md text-center">
+          <a href="{{ url_for('category.category_home', categoryid='cake') }}"><img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/IN/OHL/GW/MayART/PCQC/PC_QuadCard_186X116_1._SY116_CB590728937_.jpg" alt="Category 1" class="w-full rounded-lg mb-4" /></a>
+          <a href="{{ url_for('category.category_home', categoryid='cake') }}"><h3 class="text-lg font-medium mb-2">Cakes and Pastries</h3></a>
+          <p class="text-gray-700">Buy all the cakes and pasteries here</p>
+          <a href="{{ url_for('category.category_home', categoryid='cake') }}"><button type="button"
+              class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 mt-4">View Products</button></a>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow-md text-center">
+          <a href="{{ url_for('category.category_home', categoryid='general') }}"><img src="https://images-eu.ssl-images-amazon.com/images/G/31/media/MayART_2023/4-1X._SY116_CB589422850_.jpg" alt="Category 1" class="w-full rounded-lg mb-4" /></a>
+          <a href="{{ url_for('category.category_home', categoryid='general') }}"><h3 class="text-lg font-medium mb-2">General and Daily needs</h3></a>
+          <p class="text-gray-700">Buy all the general and daily needs here</p>
+          <a href="{{ url_for('category.category_home', categoryid='general') }}"><button type="button"
+              class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 mt-4">View Products</button></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h2 class="text-3xl font-bold mb-8 text-center">Featured Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+        {% for product in featured %}
+        <div class="bg-white p-4 rounded-lg shadow-md text-center">
+          <img src="{{ product['img'] }}" alt="{{ product['name'] }}" class="w-full rounded-lg mb-4" />
+          <h3 class="text-lg font-medium mb-2">{{ product['name'] }}</h3>
+          <p class="text-gray-700">₹{{ product['price'] }}</p>
+          <a href="{{ url_for('product.product_info', productid=product['_id']) }}"><button type="button"
+              class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 mt-4">View</button></a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>

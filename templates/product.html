@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex flex-col md:flex-row">
+      <div class="md:w-1/2 mb-4 md:mb-0">
+        <img src="{{ product['img'] }}" alt="{{ product['name'] }}" class="w-full rounded-lg" />
+      </div>
+      <div class="md:w-1/2 md:pl-8">
+        <h2 class="text-3xl font-bold mb-4">{{ product['name'] }}</h2>
+        <p class="text-gray-700 mb-4">
+          {{ product['desc'] }}
+        </p>
+        <p class="text-gray-700 mb-4">
+          <span class="font-medium">Price:</span> ₹{{ product['price'] }}
+        </p>
+        <a href="{{ url_for('cart.add_product', productid=product['_id']) }}"><button type="button" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Add to cart</button></a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

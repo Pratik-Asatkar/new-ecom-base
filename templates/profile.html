@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <h1 class="text-3xl font-bold">Dairy Delights</h1>
+        <nav>
+          <ul class="flex space-x-4">
+            <li><a href="#" class="text-gray-700 hover:text-gray-900">Home</a></li>
+            <li><a href="#" class="text-gray-700 hover:text-gray-900">Products</a></li>
+            <li><a href="#" class="text-gray-700 hover:text-gray-900">About</a></li>
+            <li><a href="{{ url_for('auth.logout') }}" class="text-gray-700 hover:text-gray-900">Logout</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h2 class="text-3xl font-bold mb-8">User Profile</h2>
+      <section class="mb-12">
+        <h3 class="text-xl font-medium mb-4">User Details</h3>
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <p><span class="font-medium">Name:</span> {{ user['name'] }}</p>
+          <p><span class="font-medium">Email:</span> {{ user['email'] }}</p>
+          <p><span class="font-medium">Address:</span> {{ user['address'] }}, {{ user['pincode'] }}</p>
+        </div>
+      </section>
+      <section class="<EUGPSCoordinates>mb<EUGPSCoordinates>-12">
+        <h3 class="<EUGPSCoordinates>text-xl font-medium mb<EUGPSCoordinates>-4">Order History</h3>
+        {% for cart in user['previous_orders'] %}
+        <div class="bg-white p-4 rounded-lg shadow-md mb-4">
+            <p><span class="font-medium">Order #:</span> {{ cart['cartid'] }}</p>
+            <p><span class="font-medium">Date:</span> {{ cart['time'] }}</p>
+            <p><span class="font-medium">Total:</span> ₹{{ cart['total'] }}</p>
+            <p><span class="font-medium">Status:</span> Delivered</p>
+        </div>
+        {% endfor %}
+      </section>
+    </main>
+  </body>
+</html>
